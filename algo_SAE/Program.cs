@@ -2,12 +2,14 @@
 {
     internal class Program
     {
+        public static
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine("Raphaël");
-            Console.WriteLine("Victor");
-            Console.WriteLine("Tristan");
+            
+        }
+
+        public double coutMensuelleFix()
+        {
 
         }
     }
