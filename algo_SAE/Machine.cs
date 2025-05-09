@@ -59,15 +59,33 @@ namespace algo_SAE
                 this.cout = value;
             }
         }
-        
+
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            return obj is Machine machine &&
+                   this.Nom == machine.Nom &&
+                   this.Qte == machine.Qte &&
+                   this.Cout == machine.Cout;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Nom, this.Qte, this.Cout);
         }
 
         public override string? ToString()
         {
             return $"Nom Machine : {this.Nom}\nQuantite de Machines : {this.Qte} unité(s)\nCout Achat Machine : {this.Cout}\n";
+        }
+
+        public static bool operator ==(Machine? left, Machine? right)
+        {
+            return EqualityComparer<Machine>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Machine? left, Machine? right)
+        {
+            return !(left == right);
         }
     }
 }
