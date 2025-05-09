@@ -50,7 +50,7 @@ namespace algo_SAE
             return nb;
         }
 
-       
+      
         public void Sauvegarde()
         {
 
