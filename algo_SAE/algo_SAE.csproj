@@ -8,17 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="EtatEntreprise.Json" />
+    <None Remove="Machines.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="data\Machines.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="EtatEntreprise.Json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
 </Project>
