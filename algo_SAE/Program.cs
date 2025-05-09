@@ -5,10 +5,10 @@
 
         static void Main(string[] args)
         {
-            
+            AfficheMenu();
         }
 
-        public void AfficheMenu()
+        public static void AfficheMenu()
         {
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("BIENVENUE SUR LE SIMULATEUR DE COMMANDE");
@@ -16,6 +16,18 @@
             Console.WriteLine("0. Quitter");
             Console.WriteLine("1. Passer une commande");
             Console.WriteLine("2. Voir anciennes commandes");
+            int choix = SaisieInt(0, 2);
+            switch(choix)
+            {
+                case 0:
+                    break;
+                case 1:
+                    //A FAIRE 1: PASSAGE DE COMMANDE
+                    break;
+                case 2:
+                    //A FAIRE 1: Afficher les commandes + possibilité de voir le détail
+                    break;
+            }
         }
 
         private static int SaisieInt(int min, int max)
@@ -35,15 +47,41 @@
             } while (!ok);
             return nb;
         }
+
+       
         public void Sauvegarde()
         {
 
             
         }
 
-        public void coutMensuelleFix()
+        public void CoutMensuelFix()
         {
             
         }
+
+        /*
+        public int CalculeNbBDecoupeuses()
+        {
+        }
+        */
+
+        /*
+        public int CalculeNbBroyeuses() 
+        { 
+        }
+        */
+
+        /*
+        public int CalculeNbEmballeuses()
+        {
+        }
+        */
+
+        /*
+        public int CalculeNbCuiseurs()
+        {
+        }
+        */
     }
 }
