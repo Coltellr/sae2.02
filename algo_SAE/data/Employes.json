@@ -1,29 +1,36 @@
 {
   "Agent_Maîtrise": {
+    "emploi": "AgentMaitrise",
     "nombre_salaries": 11,
     "salaire": 2100.00
   },
   "Cadre_Moyen": {
+    "emploi": "CadreMoyen",
     "nombre_salaries": 5,
     "salaire": 3600.00
   },
   "Commercial": {
+    "emploi":"Commercial",
     "nombre_salaries": 10,
     "salaire": 1000.00
   },
   "Employé": {
+    "emploi": "Employe",
     "nombre_salaries": 9,
     "salaire": 1800.00
   },
   "Ouvrier": {
+    "emploi": "Ouvrier",
     "nombre_salaries": 55,
     "salaire": 1600.00
   },
   "Assistant_Commercial": {
+    "emploi": "AssistantCommercial",
     "nombre_salaries": 2,
     "salaire": 1700.00
   },
   "Dirigeant": {
+    "emploi": "Dirigeant",
     "nombre_salaries": 1,
     "salaire": 18000.00
   }
