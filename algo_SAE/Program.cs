@@ -38,6 +38,8 @@ namespace algo_SAE
         public static void GetJsonFile()
         {
             ChargeJson.ChargeList<Machine>(pathMachines);
+            ChargeJson.ChargeList<Employe>(pathEmployes);
+            ChargeJson.ChargeList<Dette>(pathMachines);
         }
         private static int SaisieInt(int min, int max)
         {
