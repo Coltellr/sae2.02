@@ -8,11 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Machines.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="data\Machines.json" />
+    <None Remove="EtatEntreprise.Json" />
   </ItemGroup>
 
   <ItemGroup>
