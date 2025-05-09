@@ -54,7 +54,7 @@ namespace algo_SAE
         public void Sauvegarde()
         {
             
-            
+
         }
 
         public void CoutMensuelFix()
