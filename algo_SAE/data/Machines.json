@@ -1,18 +1,25 @@
 ﻿{
-  "Decoupe": {
-    "Nombre": 6,
-    "Cout": 1650000.00
-  },
-  "Broyage": {
-    "Nombre": 4,
-    "Cout": 1180000.00
-  },
-  "Cuisson": {
-    "Nombre": 6,
-    "Cout": 2010000.00
-  },
-  "Emballage": {
-    "Nombre": 7,
-    "Cout": 3535000.00
+  "Machines":
+  {
+    "Decoupe": {
+      "Nom" :  "Decoupeuse",
+      "Nombre": 6,
+      "Cout": 1650000.00
+    },
+    "Broyage": {
+      "Nom": "Broyeur",
+      "Nombre": 4,
+      "Cout": 1180000.00
+    },
+    "Cuisson": {
+      "Nom": "Cuiseur",
+      "Nombre": 6,
+      "Cout": 2010000.00
+    },
+    "Emballage": {
+      "Nom": "Emballeur",
+      "Nombre": 7,
+      "Cout": 3535000.00
+    }
   }
 }
