@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            
         }
 
         public void AfficheMenu()
@@ -19,7 +20,8 @@
         private static int SaisieInt(int min, int max)
         {
             int nb = 0; bool ok;
-            String choix = Console.ReadLine();
+            Console.WriteLine($"Choisissez un nombre entre {min} et {max}");
+            string choix = Console.ReadLine();
             do
             {
                 ok = true;
