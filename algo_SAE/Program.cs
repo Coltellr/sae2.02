@@ -1,4 +1,6 @@
-﻿namespace algo_SAE
+﻿using Newtonsoft.Json;
+
+namespace algo_SAE
 {
     internal class Program
     {
