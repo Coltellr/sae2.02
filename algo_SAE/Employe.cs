@@ -61,17 +61,30 @@ namespace algo_SAE
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            return obj is Employe employe &&
+                   this.Emploi == employe.Emploi &&
+                   this.Nombre == employe.Nombre &&
+                   this.Salaire == employe.Salaire;
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return HashCode.Combine(this.Emploi, this.Nombre, this.Salaire);
         }
 
         public override string? ToString()
         {
-            return $"Emploi : {Emploi}\nNombre {Nombre}\nSalaire {Salaire}";
+            return $"Emploi : {this.emploi}\nNombre {this.nombre}\nSalaire {this.salaire}";
+        }
+
+        public static bool operator ==(Employe? left, Employe? right)
+        {
+            return EqualityComparer<Employe>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Employe? left, Employe? right)
+        {
+            return !(left == right);
         }
     }
 }
