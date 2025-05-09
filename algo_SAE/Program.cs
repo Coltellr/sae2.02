@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
             
@@ -33,6 +34,16 @@
                 }
             } while (!ok);
             return nb;
+        }
+        public void Sauvegarde()
+        {
+
+            
+        }
+
+        public void coutMensuelleFix()
+        {
+            
         }
     }
 }
