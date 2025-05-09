@@ -5,6 +5,9 @@ namespace algo_SAE
     internal class Program
     {
         private static readonly string pathMachines = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Machines.json";
+        private static readonly string pathEmployes = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Employes.json";
+        private static readonly string pathBanque = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Banque.json";
+
         static void Main(string[] args)
         {
             AfficheMenu();
@@ -32,6 +35,10 @@ namespace algo_SAE
             }
         }
 
+        public static void GetJsonFile()
+        {
+            ChargeJson.ChargeList<Machine>(pathMachines);
+        }
         private static int SaisieInt(int min, int max)
         {
             int nb = 0; bool ok;
@@ -49,7 +56,6 @@ namespace algo_SAE
             } while (!ok);
             return nb;
         }
-
 
         public void CoutMensuelFix()
         {
