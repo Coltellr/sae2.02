@@ -4,6 +4,7 @@ namespace algo_SAE
 {
     internal class Program
     {
+        private static readonly string pathMachines = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Machines.json";
         static void Main(string[] args)
         {
             AfficheMenu();
@@ -49,13 +50,6 @@ namespace algo_SAE
             return nb;
         }
 
-        
-
-        public void Sauvegarde()
-        {
-            
-            
-        }
 
         public void CoutMensuelFix()
         {
