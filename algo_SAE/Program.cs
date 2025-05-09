@@ -5,6 +5,9 @@ namespace algo_SAE
     internal class Program
     {
         private static readonly string pathMachines = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Machines.json";
+        private static readonly string pathEmployes = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Employes.json";
+        private static readonly string pathBanque = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Banque.json";
+
         static void Main(string[] args)
         {
             AfficheMenu();
@@ -32,6 +35,10 @@ namespace algo_SAE
             }
         }
 
+        public static void GetJsonFile()
+        {
+            ChargeJson.ChargeList<Machine>(pathMachines);
+        }
         private static int SaisieInt(int min, int max)
         {
             int nb = 0; bool ok;
@@ -48,41 +55,6 @@ namespace algo_SAE
                 }
             } while (!ok);
             return nb;
-        }
-
-        public class ChargeJson
-        {
-            public static Dictionary<T, double> ChargeDictionary<T>(String pathName)
-            {
-                Dictionary<T, double> liste = null;
-                try
-                {
-                    String contenuFichier = File.ReadAllText(pathName);
-                    liste = JsonConvert.DeserializeObject<Dictionary<T, double>>(contenuFichier);
-                }
-                catch (Exception) { throw; }
-                return liste;
-            }
-            public static List<T> ChargeList<T>(String pathName)
-            {
-                List<T> liste = null;
-                try
-                {
-                    String contenuFichier = File.ReadAllText(pathName);
-                    liste = JsonConvert.DeserializeObject<List<T>>(contenuFichier);
-                }
-                catch (Exception) { throw; }
-                return liste;
-            }
-            public static void SauvegardeList<T>(List<T> liste, String pathName)
-            {
-                try
-                {
-                    string result = JsonConvert.SerializeObject(liste, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(pathName, result);
-                }
-                catch (Exception) { throw; }
-            }
         }
 
         public void CoutMensuelFix()
