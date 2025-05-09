@@ -1,0 +1,18 @@
+﻿{
+  "Decoupe": {
+    "Nombre": 6,
+    "Cout": 1650000.00
+  },
+  "Broyage": {
+    "Nombre": 4,
+    "Cout": 1180000.00
+  },
+  "Cuisson": {
+    "Nombre": 6,
+    "Cout": 2010000.00
+  },
+  "Emballage": {
+    "Nombre": 7,
+    "Cout": 3535000.00
+  }
+}
