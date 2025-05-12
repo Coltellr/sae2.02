@@ -6,8 +6,8 @@ namespace algo_SAE
     internal class Program
     {
         private static readonly string pathMachines = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Machines.csv";
-        private static readonly string pathEmployes = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Employes.json";
-        private static readonly string pathBanque = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Banque.json";
+        private static readonly string pathEmployes = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Employes.csv";
+        private static readonly string pathBanque = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Banque.csv";
         
 
 
@@ -16,33 +16,62 @@ namespace algo_SAE
 
             // Lire tout le contenu du fichier CSV
             List<Machine> machines = new List<Machine>();
+            List<Employe> employes = new List<Employe>();
+            List<Banque> Banque = new List<Banque>();
 
             try
             {
                 // Lire chaque ligne du fichier CSV
-                var lines = File.ReadAllLines(pathMachines);
+                List<String[]> lesLignes = new List<String[]>();
+                lesLignes.Append(File.ReadAllLines(pathMachines));
+                lesLignes.Append(File.ReadAllLines(pathEmployes));
+                lesLignes.Append(File.ReadAllLines(pathBanque));
 
                 // Sauter la première ligne qui contient les en-têtes
-                for (int i = 1; i < lines.Length; i++)
-                {
-                    var line = lines[i];
+                    for (int i = 1; i < lesLignes[0].Length; i++)
+                    {
+                        String line = lesLignes[0][i];
 
-                    // Séparer chaque ligne par la virgule
-                    var values = line.Split(';');
+                        // Séparer chaque ligne par la virgule
+                        String[] values = line.Split(';');
+
+                        // Créer un nouvel objet Machine et l'ajouter à la liste
+                        Machine machine = new Machine
+                        {
+                            Nom = values[0],
+                            Qte = int.Parse(values[1]),
+                            Cout = double.Parse(values[2])
+                        };
+
+                        machines.Add(machine);
+                    }
+                    for (int i = 1; i < lesLignes[1].Length; i++)
+                    {
+                        String line = lesLignes[1][i];
+
+                        // Séparer chaque ligne par la virgule
+                        String[] values = line.Split(';');
 
                     // Créer un nouvel objet Machine et l'ajouter à la liste
-                    Machine machine = new Machine
-                    {
-                        Nom = values[0],
-                        Qte = int.Parse(values[1]),
-                        Cout = double.Parse(values[2])
-                    };
+                    Employe employe = new Employe(values[0], int.Parse(values[1]), double.Parse(values[2]));
 
-                    machines.Add(machine);
-                }
+                        employes.Add(employe);
+                    }
+                    for (int i = 1; i < lesLignes[2].Length; i++)
+                    {
+                        String line = lesLignes[2][i];
+
+                        // Séparer chaque ligne par la virgule
+                        String[] values = line.Split(';');
+
+                        // Créer un nouvel objet Machine et l'ajouter à la liste
+                        Banque banque = new Banque()
+
+                        Banque.Add(banque);
+                    }
 
                 // Afficher les données extraites
-                foreach (Machine machine in machines)
+                foreach (var machine in machines)
                 {
                     Console.WriteLine($"Nom: {machine.Nom}, Qte: {machine.Qte}, Cout: {machine.Cout}");
                 }
@@ -51,13 +80,44 @@ namespace algo_SAE
             {
                 Console.WriteLine($"Erreur lors de la lecture du fichier : {ex.Message}");
             }
+
         }
-        /*List<Employe> employes = ChargeJson.ChargeList<Employe>(pathEmployes);
-        Entreprise e25 = new Entreprise(employes);
-            Console.WriteLine(e25);*/
-            //AfficheMenu();
-            
+        
+        //AfficheMenu();
+
+
+
+
+
+        public static List<String> extractCSVfile(String pathdata)
+        {
+            List<String> maListe = new List<String>();
+            try
+            {
+                StreamReader reader = new StreamReader(pathdata);
+                // ou StreamReader reader = new StreamReader(pathData, System.Text.Encoding.UTF8);
+                while (!reader.EndOfStream) // reader.EndOfStream == false
+                {
+                    String? unElement = reader.ReadLine();
+                    if (!String.IsNullOrWhiteSpace(unElement))
+                        maListe.Add(unElement);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Probleme avec le fichier \n" + e);
+                Environment.Exit(2);
+            }
+            return maListe;
         }
+
+    }
+
+
+
+
+
 
        /* public static void AfficheMenu()
         {
