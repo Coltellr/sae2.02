@@ -5,121 +5,33 @@ namespace algo_SAE
 {
     internal class Program
     {
-        private static readonly string pathMachines = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Machines.csv";
-        private static readonly string pathEmployes = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Employes.csv";
-        private static readonly string pathBanque = AppDomain.CurrentDomain.BaseDirectory + "\\data\\Banque.csv";
-        
-
 
         static void Main(string[] args)
         {
+            List<Employe> employeList=new List<Employe>();
 
-            // Lire tout le contenu du fichier CSV
+            employeList.Add(new Employe("AgentMaitrise", 11, 2100.00));
+            employeList.Add(new Employe("CadreMoyen", 11, 3600.00));
+            employeList.Add(new Employe("Commercial", 11, 1000.00));
+            employeList.Add(new Employe("Employe", 11, 1800.00));
+            employeList.Add(new Employe("Ouvrier", 11, 1600.00));
+            employeList.Add(new Employe("AssistantCommercial", 11, 1700.00));
+            employeList.Add(new Employe("Dirigeant", 11, 18000.00));
+
             List<Machine> machines = new List<Machine>();
-            List<Employe> employes = new List<Employe>();
-            List<Banque> Banque = new List<Banque>();
 
-            try
-            {
-                // Lire chaque ligne du fichier CSV
-                List<String[]> lesLignes = new List<String[]>();
-                lesLignes.Append(File.ReadAllLines(pathMachines));
-                lesLignes.Append(File.ReadAllLines(pathEmployes));
-                lesLignes.Append(File.ReadAllLines(pathBanque));
+            machines.Add(new Machine("Decoupe",6,1650000.00));
+            machines.Add(new Machine("Broyage",4,1180000.00));
+            machines.Add(new Machine("Cuisson",6,2010000.00));
+            machines.Add(new Machine("Emballage", 7, 3535000.00));
 
-                // Sauter la première ligne qui contient les en-têtes
-                    for (int i = 1; i < lesLignes[0].Length; i++)
-                    {
-                        String line = lesLignes[0][i];
+            Banque banque = new Banque(new Dette(125000.00), new Disponibilites(5374382.32, 50250.31, 579400.00, 78340.17));
 
-                        // Séparer chaque ligne par la virgule
-                        String[] values = line.Split(';');
-
-                        // Créer un nouvel objet Machine et l'ajouter à la liste
-                        Machine machine = new Machine
-                        {
-                            Nom = values[0],
-                            Qte = int.Parse(values[1]),
-                            Cout = double.Parse(values[2])
-                        };
-
-                        machines.Add(machine);
-                    }
-                    for (int i = 1; i < lesLignes[1].Length; i++)
-                    {
-                        String line = lesLignes[1][i];
-
-                        // Séparer chaque ligne par la virgule
-                        String[] values = line.Split(';');
-
-                    // Créer un nouvel objet Machine et l'ajouter à la liste
-                    Employe employe = new Employe(values[0], int.Parse(values[1]), double.Parse(values[2]));
-
-                        employes.Add(employe);
-                    }
-                    for (int i = 1; i < lesLignes[2].Length; i++)
-                    {
-                        String line = lesLignes[2][i];
-
-                        // Séparer chaque ligne par la virgule
-                        String[] values = line.Split(';');
-
-                        // Créer un nouvel objet Machine et l'ajouter à la liste
-                        Banque banque = new Banque()
-
-                        Banque.Add(banque);
-                    }
-
-                // Afficher les données extraites
-                foreach (var machine in machines)
-                {
-                    Console.WriteLine($"Nom: {machine.Nom}, Qte: {machine.Qte}, Cout: {machine.Cout}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erreur lors de la lecture du fichier : {ex.Message}");
-            }
-
-        }
-        
-        //AfficheMenu();
-
-
-
-
-
-        public static List<String> extractCSVfile(String pathdata)
-        {
-            List<String> maListe = new List<String>();
-            try
-            {
-                StreamReader reader = new StreamReader(pathdata);
-                // ou StreamReader reader = new StreamReader(pathData, System.Text.Encoding.UTF8);
-                while (!reader.EndOfStream) // reader.EndOfStream == false
-                {
-                    String? unElement = reader.ReadLine();
-                    if (!String.IsNullOrWhiteSpace(unElement))
-                        maListe.Add(unElement);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Probleme avec le fichier \n" + e);
-                Environment.Exit(2);
-            }
-            return maListe;
+            AfficheMenu();
         }
 
-    }
 
-
-
-
-
-
-       /* public static void AfficheMenu()
+        public static void AfficheMenu()
         {
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("BIENVENUE SUR LE SIMULATEUR DE COMMANDE");
@@ -128,7 +40,7 @@ namespace algo_SAE
             Console.WriteLine("1. Passer une commande");
             Console.WriteLine("2. Voir anciennes commandes");
             int choix = SaisieInt(0, 2);
-            switch(choix)
+            switch (choix)
             {
                 case 0:
                     break;
@@ -140,7 +52,7 @@ namespace algo_SAE
                     break;
             }
         }
-        
+
         private static int SaisieInt(int min, int max)
         {
             int nb = 0; bool ok;
@@ -161,30 +73,31 @@ namespace algo_SAE
 
         public void CoutMensuelFix()
         {
-            
-        }*/
 
-        /*
-        public int CalculeNbBDecoupeuses()
+        }
+
+
+        /*public int CalculeNbBDecoupeuses()
         {
         }
-        */
 
-        /*
-        public int CalculeNbBroyeuses() 
-        { 
+
+
+        public int CalculeNbBroyeuses()
+        {
         }
-        */
 
-        /*
+
+
         public int CalculeNbEmballeuses()
         {
         }
-        */
 
-        /*
+
+
         public int CalculeNbCuiseurs()
         {
-        }
-        */
+        }*/
+
+    }   
 }
