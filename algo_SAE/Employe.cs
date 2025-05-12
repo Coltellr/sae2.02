@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace algo_SAE
 {
-    public enum Emploi {AgentMaitrise , CadreMoyen, Commercial, Employe, Ouvrier, AssistantCommercial, Dirigeant }
     public class Employe
     {
-        private Emploi emploi;
+        private string emploi;
         private int nombre;
         private double salaire;
 
-        public Employe(Emploi emploi, int nombre, double salaire)
+        public Employe(string emploi, int nombre, double salaire)
         {
             this.Emploi = emploi;
             this.Nombre = nombre;
             this.Salaire = salaire;
         }
 
-        public Emploi Emploi
+        public string Emploi
         {
             get
             {

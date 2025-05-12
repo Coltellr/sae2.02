@@ -1,0 +1,39 @@
+{
+  "Employes": [
+    {
+      "Emploi": "AgentMaitrise",
+      "Nombre": 11,
+      "salaire": 2100.00
+    },
+    {
+      "Emploi": "CadreMoyen",
+      "Nombre": 11,
+      "salaire": 3600.00
+    },
+    {
+      "Emploi": "Commercial",
+      "Nombre": 11,
+      "salaire": 1000.00
+    },
+    {
+      "Emploi": "Employe",
+      "Nombre": 11,
+      "salaire": 1800.00
+    },
+    {
+      "Emploi": "Ouvrier",
+      "Nombre": 11,
+      "salaire": 1600.00
+    },
+    {
+      "Emploi": "AssistantCommercial",
+      "Nombre": 11,
+      "salaire": 1700.00
+    },
+    {
+      "Emploi": "Dirigeant",
+      "Nombre": 11,
+      "salaire": 18000.00
+    }
+  ]
+}

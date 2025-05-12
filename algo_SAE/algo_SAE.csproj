@@ -8,17 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="data\Employes.json" />
     <None Remove="Machines.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="data\Employes.json" />
-    <Compile Include="data\Machines.json" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <None Update="data\Banque.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\Employes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\Machines.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
