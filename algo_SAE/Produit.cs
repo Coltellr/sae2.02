@@ -86,12 +86,28 @@ namespace algo_SAE
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            return obj is Produit produit &&
+                   this.Nom == produit.Nom;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Nom);
         }
 
         public override string? ToString()
         {
             return $"Nom produit : {this.Nom}\nType de commande : {this.type}\nDate de paiement : {this.DatePaiement}\nQuantite : {this.Quantite}\nPrix : {this.Prix}";
+        }
+
+        public static bool operator ==(Produit? left, Produit? right)
+        {
+            return EqualityComparer<Produit>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Produit? left, Produit? right)
+        {
+            return !(left == right);
         }
     }
 }

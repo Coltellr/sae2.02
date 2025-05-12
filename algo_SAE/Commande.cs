@@ -45,7 +45,13 @@ namespace algo_SAE
 
         public override bool Equals(object? obj)
         {
-            return base.Equals(obj);
+            return obj is Commande commande &&
+                   this.MoisDeCommande == commande.MoisDeCommande;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.MoisDeCommande);
         }
 
         public override string? ToString()
@@ -56,6 +62,16 @@ namespace algo_SAE
                 result += produit.ToString();
             }
             return base.ToString();
+        }
+
+        public static bool operator ==(Commande? left, Commande? right)
+        {
+            return EqualityComparer<Commande>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Commande? left, Commande? right)
+        {
+            return !(left == right);
         }
     }
 }
