@@ -10,13 +10,13 @@ namespace algo_SAE
         {
             List<Employe> employeList=new List<Employe>();
 
-            employeList.Add(new Employe("AgentMaitrise", 11, 2100.00));
-            employeList.Add(new Employe("CadreMoyen", 11, 3600.00));
-            employeList.Add(new Employe("Commercial", 11, 1000.00));
-            employeList.Add(new Employe("Employe", 11, 1800.00));
-            employeList.Add(new Employe("Ouvrier", 11, 1600.00));
-            employeList.Add(new Employe("AssistantCommercial", 11, 1700.00));
-            employeList.Add(new Employe("Dirigeant", 11, 18000.00));
+            employeList.Add(new Employe("AgentMaitrise", 10, 2100.00));
+            employeList.Add(new Employe("CadreMoyen", 5, 3600.00));
+            employeList.Add(new Employe("Commercial", 5, 1000.00));
+            employeList.Add(new Employe("Employe", 5, 1800.00));
+            employeList.Add(new Employe("Ouvrier", 50, 1600.00));
+            employeList.Add(new Employe("AssistantCommercial", 1, 1700.00));
+            employeList.Add(new Employe("Dirigeant", 1, 18000.00));
 
             List<Machine> machines = new List<Machine>();
 
