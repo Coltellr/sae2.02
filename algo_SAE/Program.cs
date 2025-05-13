@@ -44,7 +44,7 @@ namespace algo_SAE
             MatierePremiere bobinePlastique = new MatierePremiere("plastique", 50, new Dictionary<string, double> { { "plastique", 50 } });
         }
 
-        public static void ChargerMachines()
+        public static void ChargeMachines()
         {
             List<Machine> machines = new List<Machine>();
 
