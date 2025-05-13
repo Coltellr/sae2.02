@@ -13,6 +13,14 @@ namespace algo_SAE
         private double poidsNet;
         private double prixVente;
 
+        public ProduitFini(string nom, double poidsNet, double prixVente, Dictionary<string, double> lesMP)
+        {
+            this.Nom = nom;
+            this.PoidsNet = poidsNet;
+            this.PrixVente = prixVente;
+            this.LesMP = lesMP;
+        }
+
         public string Nom
         {
             get
