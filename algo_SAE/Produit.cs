@@ -13,29 +13,29 @@ namespace algo_SAE
     }
     public class Produit
     {
-        private string nom;
+        private MatierePremiere matiere;
         private TypeCommande type;
         private DateTime datePaiement;
         private int quantite;
     
-        public Produit(string nom, TypeCommande type,DateTime datePaiement, int quantite)
+        public Produit(MatierePremiere matiere, TypeCommande type,DateTime datePaiement, int quantite)
         {
-            this.Nom = nom;
+            this.matiere = matiere;
             this.Type = type;
             this.DatePaiement = datePaiement;
             this.Quantite = quantite;
         }
 
-        public string Nom
+        public MatierePremiere Matiere
         {
             get
             {
-                return this.nom;
+                return this.matiere;
             }
 
             set
             {
-                this.nom = value;
+                this.matiere = value;
             }
         }
 
@@ -80,7 +80,11 @@ namespace algo_SAE
         {
             get
             {
-                double prix = 0;
+                double prix = this.matiere.Prix*this.Matiere.PoidsTotal;
+                if (this.type == TypeCommande.Normale)
+                {
+                    
+                }
                 return prix; 
             }
         }
@@ -88,17 +92,17 @@ namespace algo_SAE
         public override bool Equals(object? obj)
         {
             return obj is Produit produit &&
-                   this.Nom == produit.Nom;
+                   this.Matiere == produit.Matiere;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Nom);
+            return HashCode.Combine(this.Matiere);
         }
 
         public override string? ToString()
         {
-            return $"Nom produit : {this.Nom}\nType de commande : {this.type}\nDate de paiement : {this.DatePaiement}\nQuantite : {this.Quantite}\nPrix : {this.Prix}";
+            return $"Nom produit : {this.Matiere}\nType de commande : {this.type}\nDate de paiement : {this.DatePaiement}\nQuantite : {this.Quantite}\nPrix : {this.Prix}";
         }
 
         public static bool operator ==(Produit? left, Produit? right)

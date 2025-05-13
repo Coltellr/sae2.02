@@ -51,12 +51,12 @@ namespace algo_SAE
         {
             get
             {
-                return this.PrixVente;
+                return this.prixVente;
             }
 
             set
             {
-                this.PrixVente = value;
+                this.prixVente = value;
             }
         }
 

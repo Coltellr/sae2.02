@@ -11,12 +11,14 @@ namespace algo_SAE
         private string nom;
         private double poidsTotal;
         private Dictionary<string,double> sousProduits = new Dictionary<string, double>();
+        private double prix;
 
-        public MatierePremiere(string nom, double poidsTotal, Dictionary<string, double> sousProduits)
+        public MatierePremiere(string nom, double poidsTotal, Dictionary<string, double> sousProduits, double prix)
         {
             this.Nom = nom;
             this.PoidsTotal = poidsTotal;
             this.SousProduits = sousProduits;
+            this.prix = prix;
         }
 
         public string Nom
@@ -55,6 +57,20 @@ namespace algo_SAE
             set
             {
                 this.sousProduits = value;
+            }
+        }
+
+        public double Prix
+        {
+            get
+            {
+                return this.prix;
+            }
+
+            set
+            {
+
+                this.prix = value;
             }
         }
 
