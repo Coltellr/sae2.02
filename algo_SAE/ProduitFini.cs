@@ -9,16 +9,16 @@ namespace algo_SAE
     public class ProduitFini
     {
         private string nom;
-        private Dictionary<string, double> lesMP = new Dictionary<string, double>();
+        private Dictionary<string, double> composition = new Dictionary<string, double>();
         private double poidsNet;
         private double prixVente;
 
-        public ProduitFini(string nom, double poidsNet, double prixVente, Dictionary<string, double> lesMP)
+        public ProduitFini(string nom, double poidsNet, double prixVente, Dictionary<string, double> composition)
         {
             this.Nom = nom;
             this.PoidsNet = poidsNet;
             this.PrixVente = prixVente;
-            this.LesMP = lesMP;
+            this.Composition = composition;
         }
 
         public string Nom
@@ -60,16 +60,16 @@ namespace algo_SAE
             }
         }
 
-        public Dictionary<string, double> LesMP
+        public Dictionary<string, double> Composition
         {
             get
             {
-                return this.lesMP;
+                return this.composition;
             }
 
             set
             {
-                this.lesMP = value;
+                this.composition = value;
             }
         }
 
@@ -77,16 +77,6 @@ namespace algo_SAE
         {
             return obj is ProduitFini fini &&
                    this.Nom == fini.Nom;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Nom);
-        }
-
-        public override string? ToString()
-        {
-            return base.ToString();
         }
 
         public static bool operator ==(ProduitFini? left, ProduitFini? right)

@@ -5,7 +5,7 @@ namespace algo_SAE
 {
     internal class Program
     {
-        static int NOMBRE_MACHINE = 35;
+        static int NOMBRE_MACHINES_MAXIMUM = 35;
         static void Main(string[] args)
         {
             ChargeEntreprise();

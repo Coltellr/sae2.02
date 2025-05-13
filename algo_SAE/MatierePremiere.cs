@@ -10,13 +10,13 @@ namespace algo_SAE
     {
         private string nom;
         private double poidsTotal;
-        private Dictionary<string,double> matieres = new Dictionary<string, double>();
+        private Dictionary<string,double> sousProduits = new Dictionary<string, double>();
 
-        public MatierePremiere(string nom, double poidsTotal, Dictionary<string, double> matieres)
+        public MatierePremiere(string nom, double poidsTotal, Dictionary<string, double> sousProduits)
         {
             this.Nom = nom;
             this.PoidsTotal = poidsTotal;
-            this.Matieres = matieres;
+            this.SousProduits = sousProduits;
         }
 
         public string Nom
@@ -45,16 +45,16 @@ namespace algo_SAE
             }
         }
 
-        public Dictionary<string, double> Matieres
+        public Dictionary<string, double> SousProduits
         {
             get
             {
-                return this.matieres;
+                return this.sousProduits;
             }
 
             set
             {
-                this.matieres = value;
+                this.sousProduits = value;
             }
         }
 
@@ -62,16 +62,6 @@ namespace algo_SAE
         {
             return obj is MatierePremiere premiere &&
                    this.Nom == premiere.Nom;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Nom);
-        }
-
-        public override string? ToString()
-        {
-            return $"Nom : {this.nom}\nPoids Total {this.PoidsTotal}\nMatieres {this.Matieres}";
         }
     }
 }

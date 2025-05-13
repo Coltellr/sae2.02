@@ -56,12 +56,12 @@ namespace algo_SAE
 
         public override string? ToString()
         {
-            string result = "";
+            string result = $"Commande du mois : {this.MoisDeCommande}\n";
             foreach (Produit produit in this.LesProduits)
             {
-                result += produit.ToString();
+                result += produit + "\n";
             }
-            return base.ToString();
+            return result;
         }
 
         public static bool operator ==(Commande? left, Commande? right)
