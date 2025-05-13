@@ -10,9 +10,9 @@ namespace algo_SAE
     {
         private string nom;
         private double poidsTotal;
-        private List<double> matieres = new List<double>();
+        private Dictionary<string,double> matieres = new Dictionary<string, double>();
 
-        public MatierePremiere(string nom, double poidsTotal, List<double> matieres)
+        public MatierePremiere(string nom, double poidsTotal, Dictionary<string, double> matieres)
         {
             this.Nom = nom;
             this.PoidsTotal = poidsTotal;
@@ -45,7 +45,7 @@ namespace algo_SAE
             }
         }
 
-        public List<double> Matieres
+        public Dictionary<string, double> Matieres
         {
             get
             {

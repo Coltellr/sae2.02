@@ -65,10 +65,30 @@ namespace algo_SAE
             }
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is ProduitFini fini &&
+                   this.Nom == fini.Nom;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Nom);
+        }
 
         public override string? ToString()
         {
             return base.ToString();
+        }
+
+        public static bool operator ==(ProduitFini? left, ProduitFini? right)
+        {
+            return EqualityComparer<ProduitFini>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(ProduitFini? left, ProduitFini? right)
+        {
+            return !(left == right);
         }
     }
 }
