@@ -10,16 +10,20 @@ namespace algo_SAE
     {
         private string nom;
         private int qte;
-        private double cout;
-        public Machine() 
-        {  
-        }
+        private double coutAchat;
+        private double coutFonctionnement;
+        private Dictionary<string, double> capacite = new Dictionary<string, double>();
+        private int nbOuvriers;
 
-        public Machine(string nom, int qte, double cout)
+
+        public Machine(string nom, int qte, double coutAchat, double coutFonctionnement, Dictionary<string, double> capacite, int nbOuvriers)
         {
             this.Nom = nom;
             this.Qte = qte;
-            this.Cout = cout;
+            this.CoutAchat = coutAchat;
+            this.CoutFonctionnement = coutFonctionnement;
+            this.Capacite = capacite;
+            this.NbOuvriers = nbOuvriers;
         }
 
         public string Nom
@@ -34,6 +38,7 @@ namespace algo_SAE
                 this.nom = value;
             }
         }
+
         public int Qte
         {
             get
@@ -47,36 +52,58 @@ namespace algo_SAE
             }
         }
 
-        public double Cout
+        public double CoutAchat
         {
             get
             {
-                return this.cout;
+                return this.coutAchat;
             }
 
             set
             {
-                this.cout = value;
+                this.coutAchat = value;
             }
         }
 
-        public override bool Equals(object? obj)
+        public double CoutFonctionnement
         {
-            return obj is Machine machine &&
-                   this.Nom == machine.Nom &&
-                   this.Qte == machine.Qte &&
-                   this.Cout == machine.Cout;
+            get
+            {
+                return this.coutFonctionnement;
+            }
+
+            set
+            {
+                this.coutFonctionnement = value;
+            }
         }
 
-        public override int GetHashCode()
+        public Dictionary<string, double> Capacite
         {
-            return HashCode.Combine(this.Nom, this.Qte, this.Cout);
+            get
+            {
+                return this.capacite;
+            }
+
+            set
+            {
+                this.capacite = value;
+            }
         }
 
-        public override string? ToString()
+        public int NbOuvriers
         {
-            return $"Nom Machine : {this.Nom}\nQuantite de Machines : {this.Qte} unité(s)\nCout Achat Machine : {this.Cout}\n";
+            get
+            {
+                return this.nbOuvriers;
+            }
+
+            set
+            {
+                this.nbOuvriers = value;
+            }
         }
+
 
         public static bool operator ==(Machine? left, Machine? right)
         {
