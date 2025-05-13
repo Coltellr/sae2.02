@@ -9,7 +9,7 @@ namespace algo_SAE
     public class ProduitFini
     {
         private string nom;
-        private List<MatierePremiere> lesMP = new List<MatierePremiere>();
+        private Dictionary<string, double> lesMP = new Dictionary<string, double>();
         private double poidsNet;
         private double prixVente;
 
@@ -52,7 +52,7 @@ namespace algo_SAE
             }
         }
 
-        public List<MatierePremiere> LesMP
+        public Dictionary<string, double> LesMP
         {
             get
             {
@@ -64,7 +64,6 @@ namespace algo_SAE
                 this.lesMP = value;
             }
         }
-
 
         public override string? ToString()
         {

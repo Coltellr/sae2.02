@@ -35,6 +35,9 @@ namespace algo_SAE
             }
         }
 
+        public static void ChargeMatieresPremieres()
+        {
+        }
 
         public static void ChargeEntreprise()
         {
