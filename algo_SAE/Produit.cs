@@ -17,7 +17,15 @@ namespace algo_SAE
         private TypeCommande type;
         private DateTime datePaiement;
         private int quantite;
-
+        private static readonly Dictionary<string, (double prixVente, double coutMP, double coutMachine)> DonneesProduitUnites =
+            new Dictionary<string, (double, double, double)>()
+            {
+                { "Cuisses de poulet", (8.5, 3.2, 1.5) },
+                { "Tranches de jambon", (9.0, 3.5, 1.2) },
+                { "Pâté de porc", (7.0, 2.8, 1.0) },
+                { "Terrines de volaille", (8.0, 3.0, 1.3) },
+                { "Mousse de canard", (8.8, 3.4, 1.4) }
+            };
         public Produit(string nom, TypeCommande type,DateTime datePaiement, int quantite)
         {
             this.Nom = nom;

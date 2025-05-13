@@ -19,7 +19,7 @@ namespace algo_SAE
             Console.WriteLine("BIENVENUE SUR LE SIMULATEUR DE COMMANDE");
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("0. Quitter");
-            Console.WriteLine("1. Passer une commande");
+            Console.WriteLine("1. Optimiser la production");
             Console.WriteLine("2. Voir anciennes commandes");
             int choix = SaisieInt(0, 2);
             switch (choix)
@@ -27,7 +27,7 @@ namespace algo_SAE
                 case 0:
                     break;
                 case 1:
-                    //A FAIRE 1: PASSAGE DE COMMANDE
+
                     break;
                 case 2:
                     //A FAIRE 1: Afficher les commandes + possibilité de voir le détail
@@ -57,6 +57,7 @@ namespace algo_SAE
             Banque banque = new Banque(new Dette(125000.00), new Disponibilites(5374382.32, 50250.31, 579400.00, 78340.17));
         }
 
+
         private static int SaisieInt(int min, int max)
         {
             int nb = 0; bool ok;
@@ -74,8 +75,6 @@ namespace algo_SAE
             } while (!ok);
             return nb;
         }
-
-
 
     }   
 }
