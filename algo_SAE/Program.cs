@@ -26,7 +26,7 @@ namespace algo_SAE
                 case 0:
                     break;
                 case 1:
-
+                    //Mousse canard -> Terrine volaille ->  cuisses -> paté (calculer avec capacité découpeuse pour max jambon) -> jambon
                     break;
                 case 2:
                     //A FAIRE 1: Afficher les commandes + possibilité de voir le détail
