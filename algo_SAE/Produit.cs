@@ -17,7 +17,7 @@ namespace algo_SAE
         private TypeCommande type;
         private DateTime datePaiement;
         private int quantite;
-
+    
         public Produit(string nom, TypeCommande type,DateTime datePaiement, int quantite)
         {
             this.Nom = nom;
@@ -80,7 +80,8 @@ namespace algo_SAE
         {
             get
             {
-                return 0; // A FAIRE, PROPRIETE CALCULEE
+                double prix = 0;
+                return prix; 
             }
         }
 
