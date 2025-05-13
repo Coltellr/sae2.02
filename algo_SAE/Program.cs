@@ -37,6 +37,11 @@ namespace algo_SAE
 
         public static void ChargeMatieresPremieres()
         {
+            MatierePremiere porc = new MatierePremiere("porc", 100, new Dictionary<string, double> { { "Muscles", 15 }, { "chair porc", 62 } });
+            MatierePremiere poulet = new MatierePremiere("poulet", 2, new Dictionary<string, double> { { "Cuisse", 0.64 }, { "chair poulet", 0.62 } });
+            MatierePremiere canard = new MatierePremiere("canard", 3, new Dictionary<string, double> { { "Poitrail", 0.42 }, { "chair canard", 1.62 } });
+            MatierePremiere bobineFer = new MatierePremiere("bobine de fer", 60, new Dictionary<string, double> { { "Fer", 60 } });
+            MatierePremiere bobinePlastique = new MatierePremiere("plastique", 50, new Dictionary<string, double> { { "Plastique", 50 } });
         }
 
         public static void ChargeEntreprise()
