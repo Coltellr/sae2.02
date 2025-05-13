@@ -9,7 +9,7 @@ namespace algo_SAE
     public class ProduitFini
     {
         private string nom;
-        private List<MatierePremiere>() lesMP = new List<MatierePremiere>();
+        private List<MatierePremiere> lesMP = new List<MatierePremiere>();
         private double poidsNet;
         private double prixVente;
 
@@ -63,6 +63,12 @@ namespace algo_SAE
             {
                 this.lesMP = value;
             }
+        }
+
+
+        public override string? ToString()
+        {
+            return base.ToString();
         }
     }
 }
