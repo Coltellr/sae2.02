@@ -12,17 +12,17 @@ namespace algo_SAE
         private int qte;
         private double coutAchat;
         private double coutFonctionnement;
-        private Dictionary<string, double> capacite = new Dictionary<string, double>();
+        private Dictionary<string, double> capaciteMax = new Dictionary<string, double>();
         private int nbOuvriers;
 
 
-        public Machine(string nom, int qte, double coutAchat, double coutFonctionnement, Dictionary<string, double> capacite, int nbOuvriers)
+        public Machine(string nom, int qte, double coutAchat, double coutFonctionnement, Dictionary<string, double> capaciteMax, int nbOuvriers)
         {
             this.Nom = nom;
             this.Qte = qte;
             this.CoutAchat = coutAchat;
             this.CoutFonctionnement = coutFonctionnement;
-            this.Capacite = capacite;
+            this.CapaciteMax = capaciteMax;
             this.NbOuvriers = nbOuvriers;
         }
 
@@ -78,16 +78,16 @@ namespace algo_SAE
             }
         }
 
-        public Dictionary<string, double> Capacite
+        public Dictionary<string, double> CapaciteMax
         {
             get
             {
-                return this.capacite;
+                return this.capaciteMax;
             }
 
             set
             {
-                this.capacite = value;
+                this.capaciteMax = value;
             }
         }
 
