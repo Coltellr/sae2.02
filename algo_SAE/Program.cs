@@ -8,6 +8,9 @@ namespace algo_SAE
         static int NOMBRE_MACHINES_MAXIMUM = 35;
         static MatierePremiere porc, poulet, canard, bobineFer, bobinePlastique;
         static ProduitFini cuisseDePoulet, trancheDeJambon, pateDePorc, terrineDeVolaile, mousseDeCanard;
+        static List<Machine> machines;
+        static List<Employe> employeList;
+        static Banque banque;
         static void Main(string[] args)
         {
             ChargeEntreprise();
@@ -73,7 +76,7 @@ namespace algo_SAE
         }
         public static void ChargeMachines()
         {
-            List<Machine> machines = new List<Machine>();
+            machines = new List<Machine>();
 
             machines.Add(new Machine("Découpe", 10, 275000, 4000, new Dictionary<string, double> { { "porc", 60000 }, { "poulet", 45000 }, { "canard", 45000 } }, 2));
             machines.Add(new Machine("Broyage/Mixage", 5, 295000, 3000, new Dictionary<string, double> { { " pate de porc", 75000 }, { "terrine de volaille", 75000 }, { "mousse de canard", 75000 } }, 1));
@@ -83,7 +86,7 @@ namespace algo_SAE
 
         public static void ChargeEmployes()
         {
-            List<Employe> employeList = new List<Employe>();
+             employeList = new List<Employe>();
 
             employeList.Add(new Employe("AgentMaitrise", 10, 2100.00));
             employeList.Add(new Employe("CadreMoyen", 5, 3600.00));
@@ -96,7 +99,7 @@ namespace algo_SAE
 
         public static void ChargeBanque()
         {
-            Banque banque = new Banque(new Dette(125000.00), new Disponibilites(5374382.32, 50250.31, 579400.00, 78340.17));
+            banque = new Banque(new Dette(125000.00), new Disponibilites(5374382.32, 50250.31, 579400.00, 78340.17));
         }
         public static void ChargeEntreprise()
         {
