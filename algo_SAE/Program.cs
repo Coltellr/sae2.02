@@ -44,7 +44,7 @@ namespace algo_SAE
             };
             Console.WriteLine("Entrez le nombre de mousses");
             marchandises["Mousse Canard"] = SaisieInt(0, 0);
-            double temp = marchandises["Mousse Canard"] * 
+            double temp = (marchandises["Mousse Canard"]*mouseDeCanard) / canard.SousProduits["chair canard"]
             Console.WriteLine(""
         }
 
