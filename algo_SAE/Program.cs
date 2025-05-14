@@ -33,25 +33,24 @@ namespace algo_SAE
                     break;
             }
         }
-
         public static void ChargeMatieresPremieres()
         {
-            double prix = SaisieDouble("porc");
+            double prix = InitialisationPrixMatieres("porc");
             MatierePremiere porc = new MatierePremiere("porc", 100, new Dictionary<string, double> { { "muscles", 15 }, { "chair porc", 62 } }, prix);
-            prix = SaisieDouble("poulet");
+            prix = InitialisationPrixMatieres("poulet");
             MatierePremiere poulet = new MatierePremiere("poulet", 2, new Dictionary<string, double> { { "cuisse", 0.64 }, { "chair poulet", 0.62 } }, prix);
-            prix = SaisieDouble("canard");
+            prix = InitialisationPrixMatieres("canard");
             MatierePremiere canard = new MatierePremiere("canard", 3, new Dictionary<string, double> { { "poitrail", 0.42 }, { "chair canard", 1.62 } }, prix);
-            prix = SaisieDouble("bobine de fer");
+            prix = InitialisationPrixMatieres("bobine de fer");
             MatierePremiere bobineFer = new MatierePremiere("bobine de fer", 60, new Dictionary<string, double> { { "fer", 60 } }, prix);
-            prix = SaisieDouble("plastique");
+            prix = InitialisationPrixMatieres("plastique");
             MatierePremiere bobinePlastique = new MatierePremiere("plastique", 50, new Dictionary<string, double> { { "plastique", 50 } }, prix);
         }
         public static void ChargeProduitFini()
         {
-            ProduitFini cuiseDePoulet = new ProduitFini("Cuise De Poulet", 0.512, 5.30, new Dictionary<string, double> { { "cuisse", 0.512 }, { "plastique", 0.064 } });
+            ProduitFini cuiseDePoulet = new ProduitFini("Cuisse De Poulet", 0.512, 5.30, new Dictionary<string, double> { { "cuisse", 0.512 }, { "plastique", 0.064 } });
             ProduitFini trancheDeJambon = new ProduitFini("Tranches de Jambon", 0.180, 3.90, new Dictionary<string, double> { { "muscle", 0.180 }, { "plastique", 0.073 } });
-            ProduitFini pateDePorc = new ProduitFini("Pâté de porc", 0.098, 2.10, new Dictionary<string, double> { { "chair de porc", 0.94 }, { "fer", 0.30 } });
+            ProduitFini pateDePorc = new ProduitFini("Paté de porc", 0.098, 2.10, new Dictionary<string, double> { { "chair de porc", 0.94 }, { "fer", 0.30 } });
             ProduitFini terineDeVolaile = new ProduitFini("Terrine de volaille", 0.156, 3.20, new Dictionary<string, double> { { "chair de porc", 0.101 }, { "chair de poulet", 0.30 }, { "chair de canard", 0.20 }, { "fer", 0.080 } });
             ProduitFini mouseDeCanard = new ProduitFini("Mousse de canard", 0.180, 4.35, new Dictionary<string, double> { { "chair de porc", 0.080 }, { "poitrail de canard", 0.045 }, { "chair de canard", 0.040 }, { "plastique", 0.056 } });
         }
@@ -111,23 +110,23 @@ namespace algo_SAE
         private static double SaisieDouble()
         {
             double nb = 0 ; bool ok;
-            Console.WriteLine("Veuillez rentrez un double");
+            Console.WriteLine("Veuillez rentrer un double");
             ok=double.TryParse(Console.ReadLine(), out nb);
             while (!ok)
             {
-                Console.WriteLine("Ereure! Veuillez rentrez un double");
+                Console.WriteLine("Erreur! Veuillez rentrer un double");
                 ok = double.TryParse(Console.ReadLine(), out nb);
             }
             return nb;
         }
-        private static double SaisieDouble(String matierre)
+        private static double InitialisationPrixMatieres(String matiere)
         {
             double nb = 0; bool ok;
-            Console.WriteLine($"Veuillez rentrez le prix des {matierre}");
+            Console.WriteLine($"Veuillez rentrer le prix des {matiere}");
             ok = double.TryParse(Console.ReadLine(), out nb);
             while (!ok)
             {
-                Console.WriteLine($"Ereure! Veuillez rentrez le prix des {matierre}");
+                Console.WriteLine($"Erreur! Veuillez rentrer le prix des {matiere}");
                 ok = double.TryParse(Console.ReadLine(), out nb);
             }
             return nb;
