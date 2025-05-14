@@ -6,6 +6,7 @@ namespace algo_SAE
     internal class Program
     {
         static int NOMBRE_MACHINES_MAXIMUM = 35;
+        static MatierePremiere porc, poulet, canard, bobineFer, bobinePlastique;
         static void Main(string[] args)
         {
             ChargeEntreprise();
@@ -26,25 +27,39 @@ namespace algo_SAE
                 case 0:
                     break;
                 case 1:
-                    //Mousse canard -> Terrine volaille ->  cuisses -> paté (calculer avec capacité découpeuse pour max jambon) -> jambon
+                    CalculProduction();
                     break;
                 case 2:
                     //A FAIRE 1: Afficher les commandes + possibilité de voir le détail
                     break;
             }
         }
+
+        public static void CalculProduction()
+        {
+            Dictionary<string, double> marchandises = new Dictionary<string, double> {
+                { "Mousse Canard", 0 }, { "Terrine de vollaile", 0 }, { "Cuisse de poulet", 0 }, { "Paté de porc", 0 }, { "Jambon", 0 },
+                { "Poitrail",0 }, {"Chair Canard",0}, {"Cuisse", 0}, {"Chair de poulet", 0}, {"Chair de porc",0} ,{"Muscle",0},
+                {"Canard",0 }, {"Poulet",0}, {"Porc",0}, {"Bobine de Fer",0}, {"Bobine de Plastique",0}
+            };
+            Console.WriteLine("Entrez le nombre de mousses");
+            marchandises["Mousse Canard"] = SaisieInt(0, 0);
+            double temp = marchandises["Mousse Canard"] * 
+            Console.WriteLine(""
+        }
+
         public static void ChargeMatieresPremieres()
         {
-            double prix = InitialisationPrixMatieres("porc");
-            MatierePremiere porc = new MatierePremiere("porc", 100, new Dictionary<string, double> { { "muscles", 15 }, { "chair porc", 62 } }, prix);
-            prix = InitialisationPrixMatieres("poulet");
-            MatierePremiere poulet = new MatierePremiere("poulet", 2, new Dictionary<string, double> { { "cuisse", 0.64 }, { "chair poulet", 0.62 } }, prix);
-            prix = InitialisationPrixMatieres("canard");
-            MatierePremiere canard = new MatierePremiere("canard", 3, new Dictionary<string, double> { { "poitrail", 0.42 }, { "chair canard", 1.62 } }, prix);
-            prix = InitialisationPrixMatieres("bobine de fer");
-            MatierePremiere bobineFer = new MatierePremiere("bobine de fer", 60, new Dictionary<string, double> { { "fer", 60 } }, prix);
-            prix = InitialisationPrixMatieres("plastique");
-            MatierePremiere bobinePlastique = new MatierePremiere("plastique", 50, new Dictionary<string, double> { { "plastique", 50 } }, prix);
+            double prix = SaisieDouble("porc");
+            porc = new MatierePremiere("porc", 100, new Dictionary<string, double> { { "muscles", 15 }, { "chair porc", 62 } }, prix);
+            prix = SaisieDouble("poulet");
+            poulet = new MatierePremiere("poulet", 2, new Dictionary<string, double> { { "cuisse", 0.64 }, { "chair poulet", 0.62 } }, prix);
+            prix = SaisieDouble("canard");
+            canard = new MatierePremiere("canard", 3, new Dictionary<string, double> { { "poitrail", 0.42 }, { "chair canard", 1.62 } }, prix);
+            prix = SaisieDouble("bobine de fer");
+            bobineFer = new MatierePremiere("bobine de fer", 60, new Dictionary<string, double> { { "fer", 60 } }, prix);
+            prix = SaisieDouble("plastique");
+            bobinePlastique = new MatierePremiere("plastique", 50, new Dictionary<string, double> { { "plastique", 50 } }, prix);
         }
         public static void ChargeProduitFini()
         {
@@ -93,14 +108,24 @@ namespace algo_SAE
         private static int SaisieInt(int min, int max)
         {
             int nb = 0; bool ok;
-            Console.WriteLine($"Choisissez un nombre entre {min} et {max}");
+            if (max>0)
+            {
+                Console.WriteLine($"Choisissez un nombre entre {min} et {max}");
+            }
             string choix = Console.ReadLine();
             do
             {
                 ok = true;
-                if (!(int.TryParse(choix, out nb) && nb >= min && nb <= max))
+                if (!(int.TryParse(choix, out nb) && nb >= min && (nb <= max || max==0)))
                 {
-                    Console.WriteLine($"Erreur- Choix entre {min} et {max} :");
+                    if(max>0)
+                    {
+                        Console.WriteLine($"Erreur- Choix entre {min} et {max} :");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Saisir un entier");
+                    }
                     choix = Console.ReadLine();
                     ok = false;
                 }
