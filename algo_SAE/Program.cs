@@ -144,7 +144,7 @@ namespace algo_SAE
             }
             return nb;
         }
-        private static double InitialisationPrixMatieres(String matiere)
+        private static double SaisieDouble(String matiere)
         {
             double nb = 0; bool ok;
             Console.WriteLine($"Veuillez rentrer le prix des {matiere}");
