@@ -302,7 +302,7 @@ namespace algo_SAE
             total += (int)Math.Ceiling(machinesUtilise);
             marchandises["Emballage"] = Math.Ceiling(machinesUtilise);
 
-            return total <= 35;
+            return total <= NOMBRE_MACHINES_MAXIMUM;
         }
 
         static void AfficherDictionnaire(Dictionary<string, double> dico)
@@ -344,29 +344,12 @@ namespace algo_SAE
             machines.Add(new Machine("Emballage", 5, 505000, 7500, new Dictionary<string, double> { { "cuisses de poulet", 40000 }, { "tranches de jambon", 40000 }, { "pate de porc", 40000 }, { "terrine de volaille", 40000 }, { "mousse de canard", 40000 } }, 1));
         }
 
-        public static void ChargeEmployes()
-        {
-            employeList = new List<Employe>();
-            employeList.Add(new Employe("AgentMaitrise", 10, 2100.00));
-            employeList.Add(new Employe("CadreMoyen", 5, 3600.00));
-            employeList.Add(new Employe("Commercial", 5, 1000.00));
-            employeList.Add(new Employe("Employe", 5, 1800.00));
-            employeList.Add(new Employe("Ouvrier", 50, 1600.00));
-            employeList.Add(new Employe("AssistantCommercial", 1, 1700.00));
-            employeList.Add(new Employe("Dirigeant", 1, 18000.00));
-        }
 
-        public static void ChargeBanque()
-        {
-            banque = new Banque(new Dette(125000.00), new Disponibilites(5374382.32, 50250.31, 579400.00, 78340.17));
-        }
         public static void ChargeEntreprise()
         {
             ChargeMatieresPremieres();
             ChargeProduitFini();
             ChargeMachines();
-            ChargeEmployes();
-            ChargeBanque();
         }
 
         private static int SaisieInt(int min, int max)
