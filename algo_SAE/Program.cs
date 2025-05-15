@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Data;
 using System.Security.Cryptography;
 
 namespace algo_SAE
@@ -14,6 +15,7 @@ namespace algo_SAE
         static Dictionary<string, double> marchandises;
         static void Main(string[] args)
         {
+
             ChargeEntreprise();
             AfficheMenu();
         }
@@ -23,43 +25,73 @@ namespace algo_SAE
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("BIENVENUE SUR LE SIMULATEUR DE COMMANDE");
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine("0. Quitter");
-            Console.WriteLine("1. Optimiser la production");
-            Console.WriteLine("2. Voir anciennes commandes");
-            int choix = SaisieInt(0, 2);
-            switch (choix)
-            {
-                case 0:
-                    break;
-                case 1:
-                    CalculProduction();
-                    break;
-                case 2:
-                    //A FAIRE 1: Afficher les commandes + possibilité de voir le détail
-                    break;
-            }
+            CalculProduction();
+            
         }
 
         public static void CalculProduction()
         {
             
-            marchandises = new Dictionary<string, double> {
+            
+            do
+            {
+                marchandises = new Dictionary<string, double> {
                 { "Mousse Canard", 0 }, { "Terrine de vollaile", 0 }, { "Cuisse de poulet", 0 }, { "Paté de porc", 0 }, { "Jambon", 0 },
-                { "Poitrail",0 }, {"Chair Canard",0}, {"Cuisse", 0}, {"Chair de poulet", 0}, {"Chair de porc",0} ,{"Muscle",0},
                 {"Canard",0 }, {"Poulet",0}, {"Porc",0}, {"Bobine de Fer",0}, {"Bobine de Plastique",0},
-                {"Découpe",0 }, {"Broyage",0}, {"Cuisson",0},{"Emballage",0}
-            };
-            CalculMousse();
-            CalculTerrine();
-            CalculCuisse();
-            CalculPate();
-            CalculJambon();
+                {"Découpe",0 }, {"Broyage",0}, {"Cuisson",0},{"Emballage",0},
+                { "Poitrail",0 }, {"Chair Canard",0}, {"Cuisse", 0}, {"Chair de poulet", 0}, {"Chair de porc",0} ,{"Muscle",0},   
+                
+                };
+                CalculMousse();
+                CalculTerrine();
+                CalculCuisse();
+                CalculPate();
+                CalculJambon();
+            } while (!UtilisationMachine());
             Maximisation();
+            CalculFer();
+            CalculPlastique();
+            Console.Clear();
             AfficherDictionnaire(marchandises);
+            CalculPrix();
 
 
 
         }
+
+        private static void CalculPrix()
+        {
+            double coutPorc = marchandises["Porc"] * porc.Prix;
+            double coutPoulet = marchandises["Poulet"] * poulet.Prix;
+            double coutCanard = marchandises["Canard"] * canard.Prix;
+            double coutFer = marchandises["Bobine de Fer"] * bobineFer.Prix;
+            double coutPlastique = marchandises["Bobine de Plastique"] * bobinePlastique.Prix;
+
+            double coutMP = coutPorc + coutPoulet + coutCanard + coutFer + coutPlastique;
+
+            Console.WriteLine("---- Coût des matières premières ----");
+            Console.WriteLine($"Porc      : {coutPorc} euros");
+            Console.WriteLine($"Poulet    : {coutPoulet} euros");
+            Console.WriteLine($"Canard    : {coutCanard} euros");
+            Console.WriteLine($"Fer       : {coutFer} euros");
+            Console.WriteLine($"Plastique : {coutPlastique} euros");
+            Console.WriteLine($"=> Coût total : {coutMP} euros");
+
+            double caMousse = marchandises["Mousse Canard"] * mousseDeCanard.PrixVente;
+            double caTerrine = marchandises["Terrine de vollaile"] * terrineDeVolaile.PrixVente;
+            double caCuisse = marchandises["Cuisse de poulet"] * cuisseDePoulet.PrixVente;
+            double caPate = marchandises["Paté de porc"] * pateDePorc.PrixVente;
+            double caJambon = marchandises["Jambon"] * trancheDeJambon.PrixVente;
+            double caTotal = caMousse + caTerrine + caCuisse + caPate + caJambon;
+
+            double benefice = caTotal - coutMP;
+
+            Console.WriteLine("---- Résultats financiers ----");
+            Console.WriteLine($"Chiffre d'affaires  : {caTotal} euros");
+            Console.WriteLine($"Coût M.P.           : {coutMP} euros");
+            Console.WriteLine($"Bénéfice            : {benefice} euros");
+        }
+
         static void CalculMousse()
         {
             int carcasse, produitFini;
@@ -67,7 +99,7 @@ namespace algo_SAE
             Console.WriteLine("Entrez le nombre de mousses");
             produitFini = SaisieInt(0, 0);
 
-            carcasse = (int)Math.Ceiling((produitFini * mousseDeCanard.Composition["poitrail de canard"]) / canard.SousProduits["poitrail"]); // calcul quantité 
+            carcasse = (int)Math.Ceiling((produitFini * mousseDeCanard.Composition["poitrail de canard"]) / canard.SousProduits["poitrail"]); 
             marchandises["Canard"] = carcasse;
 
             reste = carcasse * canard.SousProduits["poitrail"] - produitFini * mousseDeCanard.Composition["poitrail de canard"];
@@ -146,22 +178,97 @@ namespace algo_SAE
 
         static void CalculJambon()
         {
-            int produitFini;
-            double reste;
+            double muscleDispo = marchandises["Muscle"];
+            double parTranche = trancheDeJambon.Composition["muscle"];
+            int nbTranches = (int)(muscleDispo / parTranche);
 
-            produitFini = (int)(marchandises["Muscle"] / trancheDeJambon.Composition["muscle"]);
-            marchandises["Jambon"] = produitFini;
+            marchandises["Jambon"] += nbTranches;
 
-            reste = Math.Round(marchandises["Muscle"] - marchandises["Jambon"] * trancheDeJambon.Composition["muscle"],3);
-            marchandises["Muscle"] = reste;
+            double resteMuscle = muscleDispo - nbTranches * parTranche;
+            marchandises["Muscle"] = Math.Max(0, Math.Round(resteMuscle, 3));
         }
-
         static void Maximisation()
         {
-            int pateAjoute = 2500000;
-            int pateEnleve = 1250000;
-            UtilisationMachine();
+            Dictionary<string,double> stockInitial = new Dictionary<string, double>(marchandises);
+
+            int bas = 0, haut = 1;
+            while (true)
+            {
+                marchandises = new Dictionary<string, double>(stockInitial);
+                AjoutPate(haut);
+                
+                if (UtilisationMachine() && marchandises["Muscle"] >= 0)
+                {
+                    bas = haut;
+                    haut *= 2;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (haut - bas > 1)
+            {
+                int mid = (bas + haut) / 2;
+
+
+                marchandises = new Dictionary<string, double>(stockInitial);
+
+                AjoutPate(mid);
+                if (UtilisationMachine() && marchandises["Muscle"] >= 0 )
+                {
+                    bas = mid;
+                }
+                else
+                {
+                    haut = mid;
+                }
+            }
+
+            marchandises = new Dictionary<string, double>(stockInitial);
+            AjoutPate(bas);
         }
+
+
+        static void AjoutPate(int nb)
+        {
+            int carcasse;
+            double reste;
+            marchandises["Paté de porc"] += nb;
+            carcasse = (int)Math.Ceiling( (nb * pateDePorc.Composition["chair de porc"] - marchandises["Chair de porc"]) / porc.SousProduits["chair porc"]);
+            marchandises["Porc"] += carcasse;
+
+            reste = carcasse * porc.SousProduits["chair porc"];
+            reste = reste - nb * pateDePorc.Composition["chair de porc"];
+            marchandises["Chair de porc"] += reste;
+            reste = carcasse * porc.SousProduits["muscles"];
+            marchandises["Muscle"] += reste;
+            CalculJambon();
+
+        }
+
+        static void CalculFer()
+        {
+            int bobine;
+            double fer;
+            fer = marchandises["Paté de porc"] * pateDePorc.Composition["fer"];
+            fer+= marchandises["Terrine de vollaile"] * terrineDeVolaile.Composition["fer"];
+            bobine= (int)Math.Ceiling(fer/bobineFer.PoidsTotal);
+            marchandises["Bobine de Fer"] = bobine;
+        }
+
+        static void CalculPlastique()
+        {
+            int bobine;
+            double plastique;
+            plastique = marchandises["Jambon"] * trancheDeJambon.Composition["plastique"];
+            plastique += marchandises["Cuisse de poulet"] * cuisseDePoulet.Composition["plastique"];
+            plastique += marchandises["Mousse Canard"] * mousseDeCanard.Composition["plastique"];
+            bobine = (int)Math.Ceiling(plastique / bobinePlastique.PoidsTotal);
+            marchandises["Bobine de Plastique"] = bobine;
+        }
+
+
 
         static bool UtilisationMachine()
         {
@@ -173,13 +280,6 @@ namespace algo_SAE
             machinesUtilise+= (marchandises["Canard"] * canard.PoidsTotal) / machines[0].CapaciteMax["canard"];
             total += (int)Math.Ceiling(machinesUtilise);
             marchandises["Découpe"] = Math.Ceiling(machinesUtilise);
-
-            machinesUtilise = (marchandises["Paté de porc"] * pateDePorc.PoidsNet) / machines[1].CapaciteMax["pate de porc"];
-            machinesUtilise+= (marchandises["Mousse Canard"] * mousseDeCanard.PoidsNet) / machines[1].CapaciteMax["mousse de canard"];
-            machinesUtilise+= (marchandises["Terrine de vollaile"] * terrineDeVolaile.PoidsNet) / machines[1].CapaciteMax["terrine de volaille"];
-            total += (int)Math.Ceiling(machinesUtilise);
-            marchandises["Broyage"] = Math.Ceiling(machinesUtilise);
-
 
             machinesUtilise = (marchandises["Paté de porc"] * pateDePorc.PoidsNet) / machines[1].CapaciteMax["pate de porc"];
             machinesUtilise += (marchandises["Mousse Canard"] * mousseDeCanard.PoidsNet) / machines[1].CapaciteMax["mousse de canard"];
@@ -207,24 +307,23 @@ namespace algo_SAE
 
         static void AfficherDictionnaire(Dictionary<string, double> dico)
         {
-            foreach (var kvp in dico)
+            foreach (var cle in dico)
             {
-                Console.WriteLine($"{kvp.Key} : {kvp.Value}");
+                Console.WriteLine($"{cle.Key} : {cle.Value}");
             }
         }
 
         public static void ChargeMatieresPremieres()
         {
-            //double prix = SaisieDouble("porc");
-            double prix = 0;
+            double prix = SaisieDouble("porc");
             porc = new MatierePremiere("porc", 100, new Dictionary<string, double> { { "muscles", 15 }, { "chair porc", 62 } }, prix);
-            //prix = SaisieDouble("poulet");
+            prix = SaisieDouble("poulet");
             poulet = new MatierePremiere("poulet", 2, new Dictionary<string, double> { { "cuisse", 0.64 }, { "chair poulet", 0.62 } }, prix);
-            //prix = SaisieDouble("canard");
+            prix = SaisieDouble("canard");
             canard = new MatierePremiere("canard", 3, new Dictionary<string, double> { { "poitrail", 0.42 }, { "chair canard", 1.62 } }, prix);
-            //prix = SaisieDouble("bobine de fer");
+            prix = SaisieDouble("bobine de fer");
             bobineFer = new MatierePremiere("bobine de fer", 60, new Dictionary<string, double> { { "fer", 60 } }, prix);
-            //prix = SaisieDouble("plastique");
+            prix = SaisieDouble("plastique");
             bobinePlastique = new MatierePremiere("plastique", 50, new Dictionary<string, double> { { "plastique", 50 } }, prix);
         }
         public static void ChargeProduitFini()
@@ -232,7 +331,7 @@ namespace algo_SAE
 
             cuisseDePoulet = new ProduitFini("Cuisse De Poulet", 0.512, 5.30, new Dictionary<string, double> { { "cuisse", 0.512 }, { "plastique", 0.064 } });
             trancheDeJambon = new ProduitFini("Tranches de Jambon", 0.180, 3.90, new Dictionary<string, double> { { "muscle", 0.180 }, { "plastique", 0.073 } });
-            pateDePorc = new ProduitFini("Paté de porc", 0.098, 2.10, new Dictionary<string, double> { { "chair de porc", 0.094 }, { "fer", 0.30 } });
+            pateDePorc = new ProduitFini("Paté de porc", 0.098, 2.10, new Dictionary<string, double> { { "chair de porc", 0.094 }, { "fer", 0.030 } });
             terrineDeVolaile = new ProduitFini("Terrine de volaille", 0.156, 3.20, new Dictionary<string, double> { { "chair de porc", 0.101 }, { "chair de poulet", 0.030 }, { "chair de canard", 0.020 }, { "fer", 0.080 } });
             mousseDeCanard = new ProduitFini("Mousse de canard", 0.180, 4.35, new Dictionary<string, double> { { "chair de porc", 0.080 }, { "poitrail de canard", 0.045 }, { "chair de canard", 0.040 }, { "plastique", 0.056 } });
         }
@@ -321,5 +420,6 @@ namespace algo_SAE
             }
             return nb;
         }
+
     }   
 }
